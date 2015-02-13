@@ -38,3 +38,5 @@ To build
 Publish to github pages
 
 	git subtree push --prefix dist origin gh-pages
+
+View live at http://mattstabeler.github.io/adaptivetweets/
