@@ -21,6 +21,10 @@ to run the project
 
 	grunt serve
 
+or 
+
+	grunt serve:dist
+
 to run unit tests
 
 	grunt test
@@ -28,3 +32,9 @@ to run unit tests
 To build
 
 	grunt
+
+
+
+Publish to github pages
+
+	git subtree push --prefix dist origin gh-pages
