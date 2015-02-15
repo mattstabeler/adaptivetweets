@@ -4,7 +4,7 @@
 <button class="btn btn-success" ng-click="loadMoreTweets()">Load More</button>
 </div>
 <div class="col-md-8">
-  <div class="well" ng-repeat="tweet in tweets">
+  <div class="well" ng-repeat="tweet in tweets | orderBy:['-sentiment', '-created_at']">
   <!-- <pre>{{tweet | json}}</pre> -->
     <h4>{{tweet.user_handle}} <small>{{tweet.created_at | date:'short'}}</small></h4> 
     <strong class="pull-right">{{tweet.sentiment}}</strong>

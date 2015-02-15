@@ -18,17 +18,29 @@ angular.module('adaptivetweetsApp')
       var processIncomingTweets = function(incomingTweets){
         var newTweets = [];
         angular.forEach(incomingTweets, function(tweet){
-          if(!tweetExists(tweet)){
+
+          var existingTweet = tweetExists(tweet);
+
+          if(!existingTweet){
             // TODO: some clever parsing of keywords before adding to array
+            tweet.count = 1;
+            tweet.words = tweet.message.split(' ');
             knownTweets.push(tweet);
             newTweets.push(tweet);
+          }else{
+            existingTweet.count +=1;
           }
         });
         return newTweets;
       };
 
       var tweetExists = function(tweet){
-        return (knownTweets.indexOf(tweet) >= 0);
+        for (var i = 0; i < knownTweets.length; i++) {
+          if (knownTweets[i].id === tweet.id){
+            return knownTweets[i];
+          }
+        }
+        return false;
       };
 
       api.getTweets = function(){
@@ -54,8 +66,6 @@ angular.module('adaptivetweetsApp')
       return api;
   }])
   .factory('Tweet', ['$resource', function($resource){
-
-      // The API can be accessed at:  or 
     var url = 'http://adaptive-test-api.herokuapp.com/tweets.json';
     var paramDefaults = {};
     var actions = {

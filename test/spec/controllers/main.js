@@ -6,9 +6,16 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('adaptivetweetsApp'));
 
   var MainCtrl,
-    scope;
+    scope,
+    initialTweets = [];
 
   // Initialize the controller and a mock scope
+  beforeEach(function () {
+    module(function($provide) {
+      $provide.value('initialTweets', initialTweets);
+    });
+  });
+  
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
