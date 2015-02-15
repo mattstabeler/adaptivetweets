@@ -23,8 +23,8 @@ angular.module('adaptivetweetsApp')
 
           if(!existingTweet){
             // TODO: some clever parsing of keywords before adding to array
+            // tweet.words = tweet.message.split(' ');
             tweet.count = 1;
-            tweet.words = tweet.message.split(' ');
             knownTweets.push(tweet);
             newTweets.push(tweet);
           }else{

@@ -14,7 +14,7 @@
 </div>
 
 <div class="col-md-8">
-  <div class="well" ng-repeat="tweet in tweets | orderBy:['-sentiment', '-created_at']">
+  <div class="well" ng-class="{'text-danger': hasKeyword(tweet)}" ng-repeat="tweet in tweets | orderBy:['-sentiment', '-created_at']">
   <!-- <pre>{{tweet | json}}</pre> -->
     <h4>{{tweet.user_handle}}
       <small>{{tweet.created_at | date:'short'}}</small>
@@ -25,7 +25,7 @@
   </div>
   <div ng-if="tweets.length == 0">
     <h2>Pah! No tweets</h2>
-    <p>load some using the button </p>
+    <p>Load some using the button</p>
   </div>
 </div>
 

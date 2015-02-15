@@ -15,6 +15,8 @@ angular.module('adaptivetweetsApp')
     $scope.lastError = undefined;
     $scope.lastMessage = undefined;
 
+    var keywords = ['coke', 'coca-cola', 'diet cola'];
+
     $scope.loadMoreTweets = function(){
     	$scope.loading = true;
     	$scope.lastError = undefined;
@@ -28,5 +30,15 @@ angular.module('adaptivetweetsApp')
     	}).finally(function(){
     		$scope.loading = false;
     	});
+    };
+
+    $scope.hasKeyword = function(tweet){
+    	// very painful way of checking a match
+    	for (var i = 0; i < keywords.length; i++) {
+    		if(tweet.message.indexOf(keywords[i]) > -1){
+    			return true;
+    		}
+    	}
+    	return false;
     };
   }]);
