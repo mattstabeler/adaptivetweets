@@ -40,3 +40,8 @@ Publish to github pages
 	git subtree push --prefix dist origin gh-pages
 
 View live at http://mattstabeler.github.io/adaptivetweets/
+
+
+Where can I find the stored Tweet data?
+
+When there are some tweets loaded, the 'toggle raw tweet data' button will appear, clicking this will dump the tweet data to the screen at the bottom of the page.

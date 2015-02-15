@@ -15,6 +15,7 @@ angular.module('adaptivetweetsApp')
     $scope.lastError = undefined;
     $scope.lastMessage = undefined;
     $scope.userHandleFilter = undefined;
+    $scope.showRaw = false;
 
     var keywords = ['coke', 'coca-cola', 'diet cola'];
 
@@ -58,6 +59,10 @@ angular.module('adaptivetweetsApp')
 
     $scope.clearFilter = function(){
     	$scope.userHandleFilter = undefined;
+    };
+
+    $scope.toggleShowRaw = function(){
+    	$scope.showRaw = !$scope.showRaw;
     };
 
   }]);
