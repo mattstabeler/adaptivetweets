@@ -16,12 +16,17 @@
 <div class="col-md-8">
   <div class="well" ng-class="{'text-danger': hasKeyword(tweet)}" ng-repeat="tweet in tweets | orderBy:['-sentiment', '-created_at']">
   <!-- <pre>{{tweet | json}}</pre> -->
+    <span class="pull-right">
+      <img ng-if="tweet.sentiment > 0" src="http://adaptive-test-api.herokuapp.com/images/positive.png" class="img" />
+      <img ng-if="tweet.sentiment < 0" src="http://adaptive-test-api.herokuapp.com/images/negative.png" class="img" />
+      <img ng-if="tweet.sentiment == 0" src="http://adaptive-test-api.herokuapp.com/images/neutral.png" class="img" />
+    </span>
+    <div class="tweettext">{{tweet.message}}</div>
     <h4>{{tweet.user_handle}}
       <small>{{tweet.created_at | date:'short'}}</small>
       <small title="this tweet was loaded {{tweet.count}} times.">Count {{tweet.count}}</samm>
     </h4> 
     <strong class="pull-right">Sentiment {{tweet.sentiment}}</strong>
-    <div class="tweettext">{{tweet.message}}</div>
   </div>
   <div ng-if="tweets.length == 0">
     <h2>Pah! No tweets</h2>
