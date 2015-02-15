@@ -40,7 +40,7 @@
     <div class="tweettext">{{tweet.message}}</div>
     <h4><span ng-click="filterUser(tweet.user_handle)">{{tweet.user_handle}}</span>
       <small>{{tweet.created_at | date:'short'}}</small>
-      <small title="this tweet was loaded {{tweet.count}} times.">Count {{tweet.count}}</small>
+      <small title="this tweet was loaded {{tweet.count}} times.">Seen {{tweet.count}} time(s)</small>
     </h4> 
     <strong class="pull-right">Sentiment {{tweet.sentiment}}</strong>
   </div>
