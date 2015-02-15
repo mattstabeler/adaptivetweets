@@ -13,15 +13,20 @@ angular.module('adaptivetweetsApp')
 
     $scope.loading = false;
     $scope.lastError = undefined;
+    $scope.lastMessage = undefined;
 
     $scope.loadMoreTweets = function(){
     	$scope.loading = true;
     	$scope.lastError = undefined;
+    	$scope.lastMessage = undefined;
+
     	tweetService.loadMoreTweets().then(function(newTweets){
-    		console.log('Loaded ' + newTweets.length + ' new tweets');
+    		$scope.lastMessage = 'Loaded ' + newTweets.length + ' new messages';
     		$scope.tweets = tweetService.getTweets();
     	}, function(error){
     		$scope.lastError = error.data.error.message;
+    	}).finally(function(){
+    		$scope.loading = false;
     	});
     };
   }]);

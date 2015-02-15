@@ -1,9 +1,11 @@
-
 <div class="col-md-4">
   <section id="buttons">
-      <button class="btn btn-success" ng-click="loadMoreTweets()">Fetch more messages</button>
+      <button class="btn btn-success" ng-click="loadMoreTweets()">Fetch more messages <i ng-if="loading" class="glyphicon glyphicon-time"></i></button>
   </section>
   <section id="messages">
+      <div ng-if="lastMessage" class="alert alert-info">
+        <strong>{{lastMessage}}</strong>
+      </div>
       <div ng-if="lastError" class="alert alert-danger">
         Error Loading: <br>
         <strong>{{lastError}}</strong>
@@ -22,7 +24,8 @@
     <div class="tweettext">{{tweet.message}}</div>
   </div>
   <div ng-if="tweets.length == 0">
-    <h2>Gah! No tweets <small>load some</small></h2>
+    <h2>Pah! No tweets</h2>
+    <p>load some using the button </p>
   </div>
 </div>
 
