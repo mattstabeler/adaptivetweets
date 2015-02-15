@@ -17,7 +17,12 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+          initialTweets: function(tweetService){
+            return tweetService.getTweets();
+          }
+        }
       })
       .when('/about', {
         templateUrl: 'views/about.html',
