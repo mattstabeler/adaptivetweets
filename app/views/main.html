@@ -1,4 +1,4 @@
-<div class="col-xs-4">
+<div class="col-xs-12 col-md-4">
   <section id="buttons">
     <div class="well">
       <button class="btn btn-success" ng-click="loadMoreTweets()">Fetch more messages <i ng-if="loading" class="glyphicon glyphicon-time"></i>
@@ -29,7 +29,7 @@
   </section>
 </div>
 
-<div class="col-xs-8">
+<div class="col-xs-12 col-md-8">
   <div class="well" ng-class="{'text-danger': hasKeyword(tweet)}" ng-repeat="tweet in getTweets() | orderBy:['-sentiment', '-created_at']">
   <!-- <pre>{{tweet | json}}</pre> -->
     <span class="pull-right">
