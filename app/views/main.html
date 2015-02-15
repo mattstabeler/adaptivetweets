@@ -1,7 +1,10 @@
-<div class="col-md-4">
+<div class="col-xs-4">
   <section id="buttons">
+    <div class="well">
       <button class="btn btn-success" ng-click="loadMoreTweets()">Fetch more messages <i ng-if="loading" class="glyphicon glyphicon-time"></i></button>
+    </div>  
   </section>
+
   <section id="messages">
       <div ng-if="lastMessage" class="alert alert-info">
         <strong>{{lastMessage}}</strong>
@@ -11,10 +14,19 @@
         <strong>{{lastError}}</strong>
       </div>
   </section>
+
+  <section id="filters">
+
+    <div class="well" ng-if="userHandleFilter">
+      <p>Showing messages from</p>
+      <strong>{{userHandleFilter}}</strong>
+      <button class="btn btn-default" ng-click="clearFilter()"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+    </div>
+  </section>
 </div>
 
-<div class="col-md-8">
-  <div class="well" ng-class="{'text-danger': hasKeyword(tweet)}" ng-repeat="tweet in tweets | orderBy:['-sentiment', '-created_at']">
+<div class="col-xs-8">
+  <div class="well" ng-class="{'text-danger': hasKeyword(tweet)}" ng-repeat="tweet in getTweets() | orderBy:['-sentiment', '-created_at']">
   <!-- <pre>{{tweet | json}}</pre> -->
     <span class="pull-right">
       <img ng-if="tweet.sentiment > 0" src="http://adaptive-test-api.herokuapp.com/images/positive.png" class="img" />
@@ -22,9 +34,9 @@
       <img ng-if="tweet.sentiment == 0" src="http://adaptive-test-api.herokuapp.com/images/neutral.png" class="img" />
     </span>
     <div class="tweettext">{{tweet.message}}</div>
-    <h4>{{tweet.user_handle}}
+    <h4><span ng-click="filterUser(tweet.user_handle)">{{tweet.user_handle}}</span>
       <small>{{tweet.created_at | date:'short'}}</small>
-      <small title="this tweet was loaded {{tweet.count}} times.">Count {{tweet.count}}</samm>
+      <small title="this tweet was loaded {{tweet.count}} times.">Count {{tweet.count}}</small>
     </h4> 
     <strong class="pull-right">Sentiment {{tweet.sentiment}}</strong>
   </div>

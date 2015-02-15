@@ -8,14 +8,24 @@
  * Controller of the adaptivetweetsApp
  */
 angular.module('adaptivetweetsApp')
-  .controller('MainCtrl', ['$scope', 'tweetService', 'initialTweets', function ($scope, tweetService, initialTweets) {
+  .controller('MainCtrl', ['$scope', '$filter', 'tweetService', 'initialTweets', function ($scope, $filter, tweetService, initialTweets) {
     $scope.tweets = initialTweets;
 
     $scope.loading = false;
     $scope.lastError = undefined;
     $scope.lastMessage = undefined;
+    $scope.userHandleFilter = undefined;
 
     var keywords = ['coke', 'coca-cola', 'diet cola'];
+
+    $scope.getTweets = function(){
+    	if($scope.userHandleFilter){
+    		var filter = { 'user_handle' : $scope.userHandleFilter};
+    		return $filter('filter')($scope.tweets, filter);
+    	}else{
+    		return $scope.tweets;
+    	}
+    };
 
     $scope.loadMoreTweets = function(){
     	$scope.loading = true;
@@ -41,4 +51,13 @@ angular.module('adaptivetweetsApp')
     	}
     	return false;
     };
+
+    $scope.filterUser = function(handle){
+    	$scope.userHandleFilter = handle;
+    };
+
+    $scope.clearFilter = function(){
+    	$scope.userHandleFilter = undefined;
+    };
+
   }]);
